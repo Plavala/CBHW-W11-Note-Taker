@@ -18,9 +18,12 @@
   ## [Description](#table-of-contents)
 Express.js route app that allows the user to create, save, and delete notes.
   
+  ['shot of the program']
 ![](/Assets/Screenshot2022-05-21150357.png)
  
-  undefined
+ [shot of the code]
+ ![](Assets/Screenshot2022-05-22020904.png)
+  
 
   ## [Installation](#table-of-contents)
 
