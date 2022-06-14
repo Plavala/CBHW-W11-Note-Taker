@@ -1,27 +1,20 @@
 const router = require("express").Router();
-const store = require("../db/store");
+const { v4: uuidv4 } = require('uuid');
+const {
+  readFromFile,
+  readAndAppend,
+  writeToFile,
+} = require('../helpers/fsUtils');
 
-// GET "/api/notes" responds with all notes from the database
-router.get("/notes", function(req, res) {
-  store
-    .getNotes()
-    .then(notes => res.json(notes))
-    .catch(err => res.status(500).json(err));
-});
+
+router.get("/notes", (req, res) => {
+  res.json('get')
+})
 
 router.post("/notes", (req, res) => {
-  store
-    .addNote(req.body)
-    .then((note) => res.json(note))
-    .catch(err => res.status(500).json(err));
-});
-
-// DELETE "/api/notes" deletes the note with an id equal to req.params.id
-router.delete("/notes/:id", function(req, res) {
-  store
-    .removeNote(req.params.id)
-    .then(() => res.json({ ok: true }))
-    .catch(err => res.status(500).json(err));
-});
+  const newNote = req.body;
+  newNote.id = uuidv4()
+  readAndAppend(newNote, './db/db.json')
+})
 
 module.exports = router;
