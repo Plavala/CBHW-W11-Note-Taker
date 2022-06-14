@@ -15,6 +15,7 @@ router.post("/notes", (req, res) => {
   const newNote = req.body;
   newNote.id = uuidv4()
   readAndAppend(newNote, './db/db.json')
+  res.json(newNote)
 })
 
 module.exports = router;
